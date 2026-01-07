@@ -9,6 +9,10 @@ event Division(uint256, uint256);
 
 contract Calculator{
 
+    address public admin;
+    constructor(address _admin){
+        admin = _admin;
+    }
 
     function addition(uint256 _num1, uint256 _num2) external returns(uint256 _result){
         _result = _num1 + _num2;
