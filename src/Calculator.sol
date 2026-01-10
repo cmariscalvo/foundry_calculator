@@ -14,6 +14,11 @@ contract Calculator{
         admin = _admin;
     }
 
+    modifier onlyAdmin(){
+        require(msg.sender == admin, "Not admin");
+        _;
+    }
+
     function addition(uint256 _num1, uint256 _num2) external returns(uint256 _result){
         _result = _num1 + _num2;
         emit Sum(_num1, _num2);
@@ -26,7 +31,7 @@ contract Calculator{
         _result = _num1 * _num2;
         emit Multiplication(_num1, _num2);
     }
-    function division(uint256 _num1, uint256 _num2) external returns(uint256 _result){
+    function division(uint256 _num1, uint256 _num2) onlyAdmin external returns(uint256 _result){
         _result = _num1 / _num2;
         emit Division(_num1, _num2);
     }
